@@ -1,15 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders Hello', () => {
+it('renders heading', () => {
   render(<App />);
-  // 複数の要素があるので、getBy... エラーになる。
-  // const element = screen.getByText('Hello');
-  // 複数の要素があるのでがある場合は getAll... を使用する。
-  const elements = screen.getAllByText('Hello');
-  screen.debug(elements);
-  // getAllBy は配列の形になるので toBeInTheDocument は使えない。
-  // expect(element).toBeInTheDocument();
-  // getAllBy を使った場合は toHaveLength を使う。
-  expect(elements).toHaveLength(2);
+  // heading が 1 つの時は通るけど、複数あるとエラーになる。
+  // const headElement = screen.getByRole('heading');
+  // getByRole のオプション name プロパティに タグのテキストを指定することができる。
+  const headElement = screen.getByRole('heading', { name: 'Hello' });
+  // li 要素の Role は listitem で取得できる。
+  const listElements = screen.getAllByRole('listitem');
+  screen.debug(headElement);
+  screen.debug(listElements);
+  expect(headElement).toBeInTheDocument();
+  expect(listElements).toHaveLength(3);
+  // macher には toEqual も使用できる。
+  expect(listElements.length).toEqual(3);
 });
