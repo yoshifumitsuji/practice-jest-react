@@ -1,8 +1,11 @@
-import './App.css';
-import Power from './componets/Power';
+import Todo from './componets/Todo';
 
 function App() {
-  return <Power name='電源' />;
+  return (
+    <div style={{ margin: '2em' }}>
+      <Todo />
+    </div>
+  );
 }
 
 export default App;
