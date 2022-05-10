@@ -1,9 +1,9 @@
-import Todo from './componets/Todo';
+import UserList from './componets/UserList';
 
 function App() {
   return (
     <div style={{ margin: '2em' }}>
-      <Todo />
+      <UserList />
     </div>
   );
 }
